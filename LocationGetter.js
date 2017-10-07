@@ -1,5 +1,13 @@
 var input = document.getElementById('files');
 var filer = input.files;
+var result = makeArray(files.length,2);
+function makeArray(d1, d2) {
+    var arr = new Array(d1), i, l;
+    for(i = 0, l = d2; i < l; i++) {
+        arr[i] = new Array(d1);
+    }
+    return arr;
+}
 for (var i = 0; i < filer.length; i++) { 
 	var cur = filer[0];
 	var reader = new FileReader;
@@ -14,7 +22,8 @@ for (var i = 0; i < filer.length; i++) {
 		longitude = (longitude[0] + longitude[1]/60 + longitude[2]/3600) * (longituderef == "W" ? -1 : 1); 
 	}                 
 	               
-    // Need to add lat and long to something.
+    result[i][0] = latitude;
+    result[i][1] = longitude;
     reader.readAsBinaryString(cur);   
 }
 
